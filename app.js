@@ -25,7 +25,7 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 
 app.get('/', async function (req, res) {
-try{
+//try{
  let { page } = req.query.page;
  if(page === undefined){
     page = 1;
@@ -40,10 +40,10 @@ try{
    res.status(200).json({
         products: resProducts
     });
-}
- catch(error){
+//}
+ /*catch(error){
    res.send(JSON.stringify(error));
- }
+ }*/
 });
 
 app.listen(port, function () {
