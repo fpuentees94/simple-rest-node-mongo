@@ -28,6 +28,7 @@ app.get('/', async function (req, res) {
 try{
  const resProducts = await products.find().exec();
  res.setHeader("Content-Type", "application/json");
+ res.status(200);
  res.send(JSON.stringify({products:resProducts}));
 }
  catch(error){
