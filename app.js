@@ -14,9 +14,7 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 
 app.get('/', function (req, res) {
-
- const collection = mongoose.db("simple_ripley").collection("products");
- res.send(JSON.stringify(collection);
+ res.send(JSON.stringify({ Hello: 'World'}));
 });
 app.get('/lillo', function (req, res) {
  res.send(JSON.stringify({ Hello: 'Lillo'}));
