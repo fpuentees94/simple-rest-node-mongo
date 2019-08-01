@@ -13,8 +13,13 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 });
 
 
-app.get('/', function (req, res) {
- res.send(JSON.stringify({ Hello: 'World'}));
+app.get('/', *function (req, res) {
+try{
+const products = await mongoose.db.products.find();
+ res.send(JSON.stringify(products));}
+ catch(error){
+   rest.send(JSON.stringify(error));
+ }
 });
 app.get('/lillo', function (req, res) {
  res.send(JSON.stringify({ Hello: 'Lillo'}));
