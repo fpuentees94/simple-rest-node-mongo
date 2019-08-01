@@ -4,7 +4,7 @@ var port = process.env.PORT || 3000;
 var app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/test?retryWrites=true&w=majority", (err, res) => {
+mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripley?retryWrites=true&w=majority", (err, res) => {
 
     if (err) throw err;
 
@@ -12,8 +12,11 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/test?retryW
 
 });
 
+
 app.get('/', function (req, res) {
- res.send(JSON.stringify({ Hello: 'World'}));
+
+ const collection = mongoose.db("simple_ripley").collection("products");
+ res.send(JSON.stringify(collection);
 });
 app.get('/lillo', function (req, res) {
  res.send(JSON.stringify({ Hello: 'Lillo'}));
