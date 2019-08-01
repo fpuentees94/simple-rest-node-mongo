@@ -26,10 +26,8 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 app.get('/', async function (req, res) {
 //try{
- let { page } = req.query.page;
- if(page === undefined){
-    page = 1;
- }
+ let page = req.query.page || 1;
+
  let perPage = 6;
 
  const resProducts = await products.find()
