@@ -5,10 +5,9 @@ var app = express();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
-  restore_password: { type: String, trim: true, default: null }})
+const productSchema = new Schema();
 
-const products = mongoose.model('Product', productSchema);
+const products = mongoose.model('Product');
 
 
 
@@ -31,10 +30,4 @@ try{
  catch(error){
    rest.send(JSON.stringify(error));
  }
-});
-app.get('/lillo', function (req, res) {
- res.send(JSON.stringify({ Hello: 'Lillo'}));
-});
-app.listen(port, function () {
- console.log('Example app listening on port !');
 });
