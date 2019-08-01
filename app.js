@@ -42,7 +42,7 @@ try{
     });
 }
  catch(error){
-   rest.send(JSON.stringify(error));
+   res.send(JSON.stringify(error));
  }
 });
 
