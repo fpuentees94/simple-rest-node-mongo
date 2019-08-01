@@ -25,7 +25,7 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 
 app.get('/', async function (req, res) {
-//try{
+try{
  console.log(req.query);
  let page = req.query.page || 1;
 
@@ -36,13 +36,20 @@ app.get('/', async function (req, res) {
  .limit(perPage)
  .exec();
 
+  const records = await products.count().exec();
+
+
    res.status(200).json({
+   	    records:records,
+   	    page:page,
+   	    perPage:perPage,
+   	    totalPages:Math.ceil(records / perPage),
         products: resProducts
     });
-//}
- /*catch(error){
+}
+ catch(error){
    res.send(JSON.stringify(error));
- }*/
+ }
 });
 
 app.listen(port, function () {
