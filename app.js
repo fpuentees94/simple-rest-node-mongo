@@ -4,6 +4,13 @@ var port = process.env.PORT || 3000;
 var app = express();
 const mongoose = require('mongoose');
 
+const products = mongoose.model('Product', productSchema);
+
+const productSchema = new Schema({
+  restore_password: { type: String, trim: true, default: null }})
+
+
+
 mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripley?retryWrites=true&w=majority", (err, res) => {
 
     if (err) throw err;
@@ -15,8 +22,9 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 app.get('/', async function (req, res) {
 try{
-const products = await mongoose.db.products.find();
- res.send(JSON.stringify(products));}
+ const resProducts = await products.find().exec();
+ res.send(JSON.stringify(resProducts));
+}
  catch(error){
    rest.send(JSON.stringify(error));
  }
