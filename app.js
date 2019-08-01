@@ -27,7 +27,7 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 app.get('/', async function (req, res) {
 try{
  const resProducts = await products.find().exec();
- res.send(JSON.stringify(resProducts));
+ res.send(JSON.stringify({products:resProducts}));
 }
  catch(error){
    rest.send(JSON.stringify(error));
