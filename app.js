@@ -26,14 +26,17 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 app.get('/', async function (req, res) {
 try{
- const resProducts = await products.find().exec();
+ const { page } = req.query.page;
+ let perPage = 6;
+
+ const resProducts = await products.find()
+ .skip(perPage * (page - 1))
+ .limit(perPage)
+ .exec();
 
    res.status(200).json({
         products: resProducts
     });
- /*res.setHeader("Content-Type", "application/json");
- res.status(200);
- res.send(JSON.stringify({products:resProducts}));*/
 }
  catch(error){
    rest.send(JSON.stringify(error));
