@@ -3,11 +3,15 @@ var express = require('express');
 var port = process.env.PORT || 3000;
 var app = express();
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+
+const productSchema = new Schema({
+  name: { type: String, trim: true, default: null }})
+
 
 const products = mongoose.model('Product', productSchema);
 
-const productSchema = new Schema({
-  restore_password: { type: String, trim: true, default: null }})
 
 
 
