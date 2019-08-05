@@ -5,15 +5,14 @@ var app = express();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
+//CREATE SCHEMA MONGO PRODUCTS
 const productSchema = new Schema({
   name: { type: String, trim: true, default: null }})
 
 
 const products = mongoose.model('Product', productSchema);
 
-
-
+//CONNECT MONGO DB
 
 mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripley?retryWrites=true&w=majority", (err, res) => {
 
@@ -23,7 +22,7 @@ mongoose.connect("mongodb+srv://root:1234@cluster0-9d1wo.mongodb.net/simple_ripl
 
 });
 
-
+//ROUTE GET PRODUCT WITH PAGINATOR
 app.get('/', async function (req, res) {
 try{
  console.log(req.query);
